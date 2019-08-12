@@ -57,7 +57,7 @@ new_filename = ""
 if len(filename_with_ext) >= 2:
     filename= os.path.splitext(filename_with_ext)[0]     # /path/to/some/file.txt -> file
     fileext= os.path.splitext(filename_with_ext)[1]      # /path/to/some/file.txt -> txt
-    new_filename = filename + "_" + str(int(factor*100)) + "." + fileext
+    new_filename = filename + "_" + str(int(factor*100)) + fileext
 else:
     new_filename= path + "_new.xml"
 
