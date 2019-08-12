@@ -1,5 +1,6 @@
 import re
 import sys
+import os
 
 print("execute script from : " +sys.argv[0])
 print("running target file : " +sys.argv[1] + "\n")
@@ -48,7 +49,22 @@ for line in file_read:
 
     new_file.append(new_line)
 
-file_write = open(path + "_new.xml", "w+")
+
+filename_with_ext= os.path.basename(path)               # /path/to/some/file.txt -> /path/to/some
+#print("filename_with_ext : \n"+filename_with_ext + '\n')
+dirname = os.path.dirname(os.path.abspath(path))        # /path/to/some/file.txt -> /path/to/some/file
+new_filename = ""
+if len(filename_with_ext) >= 2:
+    filename= os.path.splitext(filename_with_ext)[0]     # /path/to/some/file.txt -> file
+    fileext= os.path.splitext(filename_with_ext)[1]      # /path/to/some/file.txt -> txt
+    new_filename = filename + "_" + str(int(factor*100)) + "." + fileext
+else:
+    new_filename= path + "_new.xml"
+
+print("result file here \n--> "+ new_filename)
+file_write = open(new_filename, "w+")
+
+
 for i in new_file:
     file_write.write(i)
 
