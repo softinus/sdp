@@ -1,7 +1,25 @@
 import re
+import sys
 
-path = input ("Enter the target flie path : ") 
-factor = float(input("Enter the factor to rescale : (0.75, 0.9, 1.0 ...)"))
+print("execute script from : " +sys.argv[0])
+print("running target file : " +sys.argv[1] + "\n")
+
+path = ""
+if sys.argv[1] == "":
+    path = input ("Enter the target flie path : ")
+else:
+    path = sys.argv[1]
+
+if path == "":
+    print("path null error.")
+    sys.exit()
+
+factor = 1.0
+factor_input = input("Enter the factor to rescale [e.g> 0.75, 0.9, 1.0 ...] [default factor : 1.0]\n --> ")
+if factor_input.strip() != "":
+    factor = float(factor_input)
+#print(str(factor))
+#sys.exit()
 new_file = []
 
 file_read = open(path, "r")
